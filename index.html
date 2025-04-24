@@ -3,24 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <title>mObywatel</title>
-  <link rel="icon" type="image/x-icon" href="https://play-lh.googleusercontent.com/_TNbiYKasPy_isTSEg2_UEzVaev4F8fO2lLunsHJ8_Ux2g3OzkSZyzpqvJG1woSj-WD4=w240-h480-rw">
   <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="https://play-lh.googleusercontent.com/_TNbiYKasPy_isTSEg2_UEzVaev4F8fO2lLunsHJ8_Ux2g3OzkSZyzpqvJG1woSj-WD4=w240-h480-rw">
   <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .guide_holder {
+      margin-bottom: 20px;
+    }
+
+    .top_holder {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .guide_title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .arrow {
+      height: 20px;
+    }
+
+    .upload {
+      margin: 20px 0;
+    }
+
+    .upload_grid {
+      border: 2px dashed #ccc;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      width: 200px;
+    }
+
     .upload_uploaded {
       display: none;
       max-width: 200px;
       margin-top: 10px;
     }
-    .upload_grid {
-      cursor: pointer;
+
+    .input_holder {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .input {
+      width: 100%;
       padding: 10px;
-      border: 2px dashed #aaa;
-      width: 200px;
-      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .placeholder {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #999;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+    }
+
+    .selector_box {
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .option_box {
+      margin-top: 10px;
+    }
+
+    .selector_option {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .date_input {
+      width: 60px;
+      padding: 8px;
+      margin-right: 5px;
+      font-size: 16px;
+    }
+
+    .go {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .top_info {
+      font-weight: bold;
+    }
+
+    .subtext {
+      margin-top: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
+
+  <div class="guide_holder">
+    <div class="top_holder">
+      <p class="guide_title">Instrukcja</p>
+      <img class="arrow" src="https://i.imgur.com/aUZmu0W.png">
+    </div>
+    <div class="guide_text">
+      <span style="font-size: 17px; font-weight: 500;">Dla systemu IOS:</span><br>
+      <ul>
+        <li>Upewnij się, że używasz przeglądarki Safari</li>
+        <li>Uzupełnij dane i kliknij wejdź</li>
+        <li>Naciśnij udostępnij → Do Ekranu głównego</li>
+      </ul>
+      <span style="font-size: 17px; font-weight: 500;">Dla systemu Android:</span>
+      <ul>
+        <li>Upewnij się, że używasz przeglądarki Google lub Chrome</li>
+        <li>Uzupełnij dane i kliknij wejdź</li>
+        <li>Naciśnij 3 kropki → Dodaj do ekranu głównego</li>
+      </ul>
+    </div>
+  </div>
 
   <div class="upload">
     <p class="error">To pole jest wymagane</p>
@@ -32,9 +151,100 @@
     </div>
   </div>
 
-  <!-- ...reszta Twojego formularza tutaj (pola input itd.) -->
+  <div class="input_holder">
+    <input type="text" id="name" class="input">
+    <span class="placeholder">Imię (imiona)</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="surname" class="input">
+    <span class="placeholder">Nazwisko</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <p class="top_info">Płeć</p>
+  <div class="selector_box">
+    <div class="selected_grid">
+      <p class="selector_text selected_text">Mężczyzna</p>
+      <img class="selected_arrow" src="https://i.imgur.com/RXsdBB6.png">
+    </div>
+    <div class="option_box">
+      <div class="selector_option" id="m">Mężczyzna</div>
+      <div class="selector_option" id="k">Kobieta</div>
+    </div>
+  </div>
+
+  <div class="date">
+    <p class="top_info">Data urodzenia</p>
+    <div class="date_grid">
+      <input class="date_input" placeholder="DD" type="number">
+      <input class="date_input" placeholder="MM" type="number">
+      <input class="date_input" placeholder="YYYY" type="number">
+    </div>
+    <p class="error">Wprowadź prawidłową datę</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="nationality" class="input">
+    <span class="placeholder">Obywatelstwo</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="familyName" class="input">
+    <span class="placeholder">Nazwisko rodowe</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="fathersFamilyName" class="input">
+    <span class="placeholder">Nazwisko rodowe ojca</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="mothersFamilyName" class="input">
+    <span class="placeholder">Nazwisko rodowe matki</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <p class="subtext">Miejsce zamieszkania</p>
+
+  <div class="input_holder">
+    <input type="text" id="birthPlace" class="input">
+    <span class="placeholder">Miejsce urodzenia</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="countryOfBirth" class="input">
+    <span class="placeholder">Kraj urodzenia</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="adress1" class="input">
+    <span class="placeholder">Ulica i numer domu</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="adress2" class="input">
+    <span class="placeholder">Kod pocztowy</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <div class="input_holder">
+    <input type="text" id="city" class="input">
+    <span class="placeholder">Miasto</span>
+    <p class="error">To pole jest wymagane</p>
+  </div>
+
+  <a class="go">wejdź</a>
 
   <script>
+    // Obsługa dodawania zdjęcia
     const fileInput = document.getElementById("fileInput");
     const uploadTrigger = document.getElementById("uploadTrigger");
     const uploadedImage = document.getElementById("uploadedImage");
@@ -55,6 +265,5 @@
       }
     });
   </script>
-
 </body>
 </html>
