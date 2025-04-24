@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/index.css">
@@ -29,12 +31,13 @@
 
     <div class="upload">
         <p class="error">To pole jest wymagane</p>
-        <img class="upload_uploaded">
+        <img class="upload_uploaded" style="display: none;">
         <div class="upload_uploading"></div>
-        <div class="upload_grid">
+        <div class="upload_grid" id="uploadTrigger">
             <img class="upload_image" src="https://i.imgur.com/vwIQErh.png">
             <p class="upload_text">Dodaj zdjęcie</p>
         </div>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;">
     </div>
 
     <div class="input_holder">
@@ -56,12 +59,8 @@
             <img class="selected_arrow" src="https://i.imgur.com/RXsdBB6.png">
         </div>
         <div class="option_box">
-            <div class="selector_option" id="m">
-                Mężczyzna
-            </div>
-            <div class="selector_option" id="k">
-                Kobieta
-            </div>
+            <div class="selector_option" id="m">Mężczyzna</div>
+            <div class="selector_option" id="k">Kobieta</div>
         </div>
     </div>
 
@@ -69,14 +68,8 @@
         <p class="top_info">Data urodzenia</p>
         <div class="date_grid">
             <input class="date_input" placeholder="DD" type="number">
-    
-            </input>
             <input class="date_input" placeholder="MM" type="number">
-    
-            </input>
             <input class="date_input" placeholder="YYYY" type="number">
-    
-            </input>
         </div>
         <p class="error">Wprowadź prawidłową datę</p>
     </div>
@@ -141,4 +134,27 @@
 
     <script src="assets/index.js"></script>
     <script src="assets/manifest.js"></script>
+
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const uploadTrigger = document.getElementById("uploadTrigger");
+        const uploadedImage = document.querySelector(".upload_uploaded");
+
+        uploadTrigger.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
+</html>
